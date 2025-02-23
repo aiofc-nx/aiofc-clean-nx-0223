@@ -10,5 +10,19 @@
     "target": "es2021"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../../packages/infrastructures/logger/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/infrastructures/constants/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/infrastructures/utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/infrastructures/config/tsconfig.lib.json"
+    }
+  ]
 }
