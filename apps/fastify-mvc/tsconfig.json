@@ -4,6 +4,18 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/infrastructures/logger"
+    },
+    {
+      "path": "../../packages/infrastructures/constants"
+    },
+    {
+      "path": "../../packages/infrastructures/utils"
+    },
+    {
+      "path": "../../packages/infrastructures/config"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {
