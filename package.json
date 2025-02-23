@@ -1,18 +1,80 @@
 {
-  "name": "@aiofc-clean-nx-0223/source",
+  "name": "@aiofc/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "packageManager": "pnpm@8.15.0",
+  "volta": {
+    "node": "20.18.1"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "doc": "typedoc --options typedoc.json && vitepress dev docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:typedoc": "typedoc --options typedoc.json",
+    "docs:typedoc:watch": "typedoc --watch",
+    "drizzle:generate": "drizzle-kit generate --config drizzle/src/lib/aiofc.config.ts",
+    "drizzle:migrate": "cross-env NODE_OPTIONS='--import tsx' DB_MIGRATING=true node drizzle/src/command/aiofc.migrate.ts"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/config-nx-scopes": "^19.7.1",
+    "@eslint/js": "^9.8.0",
+    "@nestjs/schematics": "^11.0.1",
+    "@nestjs/testing": "^11.0.10",
+    "@nx/eslint": "20.4.6",
+    "@nx/eslint-plugin": "20.4.6",
+    "@nx/jest": "20.4.6",
     "@nx/js": "20.4.6",
+    "@nx/nest": "20.4.6",
+    "@nx/node": "20.4.6",
+    "@nx/web": "20.4.6",
+    "@nx/webpack": "20.4.6",
+    "@nx/workspace": "20.4.6",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "~18.16.9",
+    "commitizen": "^4.3.1",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^7.4.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "nx": "20.4.6",
     "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
     "tslib": "^2.3.0",
-    "typescript": "~5.7.2"
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-markdown": "^4.4.2",
+    "typedoc-vitepress-theme": "^1.1.2",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.19.0",
+    "verdaccio": "^5.0.4",
+    "vitepress": "^1.6.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.10",
+    "@nestjs/core": "^11.0.10",
+    "@nestjs/platform-express": "^10.0.2",
+    "@nestjs/platform-fastify": "^11.0.10",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }

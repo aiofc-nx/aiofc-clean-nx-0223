@@ -40,3 +40,12 @@ Thumbs.db
 
 .nx/cache
 .nx/workspace-data
+
+test-output
+
+# docs
+docs/api
+docs/.vitepress/cache
+
+# docker
+deploy

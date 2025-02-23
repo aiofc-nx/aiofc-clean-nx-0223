@@ -1,3 +1,27 @@
 {
-  "recommendations": ["nrwl.angular-console", "esbenp.prettier-vscode"]
+  "recommendations": [
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "yoavbls.pretty-ts-errors",
+    "bierner.markdown-mermaid",
+    "vstirbu.vscode-mermaid-preview",
+    "shd101wyy.markdown-preview-enhanced",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "prisma.prisma",
+    "qwtel.sqlite-viewer",
+    "yoavbls.pretty-ts-errors",
+    "corschenzi.mermaid-graphical-editor",
+    "psulek-solo.typedoc-live-preview",
+    "davidanson.vscode-markdownlint",
+    "wayou.vscode-todo-highlight",
+    "imgildev.vscode-auto-barrel",
+    "ms-azuretools.vscode-docker",
+    "jmkrivocapich.drawfolderstructure",
+    "brunnerh.insert-unicode",
+    "pflannery.vscode-versionlens",
+    "bierner.markdown-checkbox"
+  ]
 }

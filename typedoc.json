@@ -1,0 +1,37 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "includeVersion": true,
+  "tsconfig": "./tsconfig.base.json",
+  "entryPoints": [
+    "./apps/*/src/**/!(*.spec|*.test).ts",
+    "./packages/**/*/src/**/!(*.spec|*.test).ts"
+  ],
+  "out": "./docs/api",
+  "docsRoot": "./docs",
+  "outputFileStrategy": "members",
+  "membersWithOwnFile": ["Class", "Enum", "Interface"],
+  // "publicPath": "http://localhost:5173/",
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeExternals": false,
+  // "plugin": ["typedoc-plugin-merge-modules", "typedoc-plugin-markdown"],
+  "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+  "skipErrorChecking": true,
+
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/jest.config.ts",
+    "**/jest.preset.js",
+    "**/__tests__/**"
+  ],
+  "intentionallyNotExported": ["EnvSchema", "EnvVariables"],
+  // "readme": "docs/guides/readme.md",
+  "readme": "none",
+  "indexFormat": "table",
+  "useCodeBlocks": true,
+  "disableSources": true
+  // "lang": "zh"
+}
