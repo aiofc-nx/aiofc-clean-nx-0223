@@ -11,6 +11,18 @@
     },
     {
       "path": "./packages/infrastructures/constants"
+    },
+    {
+      "path": "./packages/infrastructures/config"
+    },
+    {
+      "path": "./packages/infrastructures/logger"
+    },
+    {
+      "path": "./packages/infrastructures/utils"
+    },
+    {
+      "path": "./packages/infrastructures/rest"
     }
   ]
 }

@@ -1,1 +1,2 @@
-export * from './lib/typings.module';
+export * from './lib/global';
+export * from './lib/utils';
