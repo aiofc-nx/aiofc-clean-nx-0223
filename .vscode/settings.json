@@ -1,4 +1,26 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": true,
+
+  "eslint.validate": ["json"],
+  "nxConsole.nxWorkspacePath": "",
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@remix-run/server-runtime",
+    "@remix-run/router",
+    "express",
+    "@radix-ui/**",
+    "@react-email/**",
+    "react-router-dom",
+    "react-router",
+    "node:stream/consumers",
+    "node:test",
+    "node:console"
+  ],
+  "workbench.editorAssociations": {
+    "*.db": "sqlite-viewer.view"
+  },
   "cSpell.words": [
     "aiofc",
     "aiokit",
@@ -26,22 +48,5 @@
     "typecheck",
     "webp",
     "websockets"
-  ],
-  "eslint.validate": ["json"],
-  "nxConsole.nxWorkspacePath": "",
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "@remix-run/server-runtime",
-    "@remix-run/router",
-    "express",
-    "@radix-ui/**",
-    "@react-email/**",
-    "react-router-dom",
-    "react-router",
-    "node:stream/consumers",
-    "node:test",
-    "node:console"
-  ],
-  "workbench.editorAssociations": {
-    "*.db": "sqlite-viewer.view"
-  }
+  ]
 }

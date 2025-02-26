@@ -2,7 +2,7 @@ import * as argon2 from 'argon2';
 import { customAlphabet, nanoid } from 'nanoid';
 
 const nanoidNoSpecialCharacters = customAlphabet(
-  '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 );
 
 const nanoidOnlyNumbers = customAlphabet('1234567890');

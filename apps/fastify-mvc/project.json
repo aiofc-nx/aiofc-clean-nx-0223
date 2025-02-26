@@ -9,18 +9,24 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
-        "args": ["node-env=production"]
+        "args": [
+          "node-env=production"
+        ]
       },
       "configurations": {
         "development": {
-          "args": ["node-env=development"]
+          "args": [
+            "node-env=development"
+          ]
         }
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "buildTarget": "fastify-mvc:build",
         "runBuildTargetDependencies": false
@@ -38,6 +44,13 @@
       "options": {
         "passWithNoTests": true
       }
+    },
+    "repl": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nest start --entryFile repl"
+      },
+      "cwd": "apps/fastify-mvc/src"
     }
   }
 }

@@ -20,6 +20,8 @@ export const loggerZodSchema = z.object({
 export const swaggerZodSchema = z.object({
   enable: z.boolean().default(false), // 是否启用文档，默认false
   path: z.string().default('doc'), // 文档路径，默认'doc'
+  user: z.string().default('admin'), // Swagger文档认证用户名，默认'admin'
+  password: z.string().default('123456'), // Swagger文档认证密码，默认'123456'
 });
 
 // 定义 Database 配置的校验规则
@@ -86,6 +88,18 @@ export const redisZodSchema = z.object({
   }),
 });
 
+// 定义 Email 配置的校验规则
+export const emailZodSchema = z.object({
+  host: z.string(),
+  port: z.number(),
+  auth: z.object({
+    user: z.string(),
+    password: z.string(),
+  }),
+  debug: z.boolean().default(false),
+  logger: z.boolean().default(false),
+});
+
 // 合并所有配置的校验规则
 export const allConfigSchema = z.object({
   app: appZodSchema,
@@ -94,7 +108,8 @@ export const allConfigSchema = z.object({
   swagger: swaggerZodSchema,
   database: databaseZodSchema,
   throttler: throttlerZodSchema,
-  redis: redisZodSchema, // 添加 Redis 校验规则
+  redis: redisZodSchema,
+  email: emailZodSchema,
 });
 
 // 提取配置类型
@@ -103,9 +118,10 @@ export type ILoggerConfig = z.infer<typeof loggerZodSchema>;
 export type IDatabaseConfig = z.infer<typeof databaseZodSchema>;
 export type ICorsConfig = z.infer<typeof corsZodSchema>;
 export type IThrottlerConfig = z.infer<typeof throttlerZodSchema>;
-export type IRedisConfig = z.infer<typeof redisZodSchema>; // 提取 Redis 配置类型
+export type IRedisConfig = z.infer<typeof redisZodSchema>;
 export type ISwaggerConfig = z.infer<typeof swaggerZodSchema>;
 export type IAllConfig = z.infer<typeof allConfigSchema>;
+export type IEmailConfig = z.infer<typeof emailZodSchema>;
 
 export interface AllConfigType {
   app: IAppConfig;
@@ -115,6 +131,7 @@ export interface AllConfigType {
   database: IDatabaseConfig;
   throttler: IThrottlerConfig;
   redis: IRedisConfig;
+  email: IEmailConfig;
 }
 
 export type ConfigKeyPaths = RecordNamePaths<AllConfigType>;

@@ -14,7 +14,7 @@ import {
   ISwaggerConfig,
   IThrottlerConfig,
 } from './config.schema';
-
+// 获取配置文件，并校验配置项
 const validateConfig = (yamlFilePath: string) => {
   const config = yaml.load(fs.readFileSync(yamlFilePath, 'utf8')) as Record<
     string,

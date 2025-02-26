@@ -1,90 +1,223 @@
 # AiofcCleanNx0223
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+**NestJSApiBoilerplateJWT**
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+An API Boilerplate to create a ready-to-use REST API in seconds with NestJS 11.x and JWT Auth System :heart_eyes_cat:
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Installation
 
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/MsZEdghPhm)
-
-
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+```bash
+   pnpm install
 ```
 
-## Run tasks
+## Set Environment for secret key JWT and other configurations
 
-To build the library use:
-
-```sh
-npx nx build pkg1
+```bash
+   cp .env.example .env
 ```
 
-To run any task with Nx use:
+To set up on multiple environments, such as dev, stage or prod, we do as follows:
 
-```sh
-npx nx <target> <project-name>
+```bash
+   cp .env.example .env.dev # or .env.stage, etc
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
+## Config settings .env for sending a notification when a user registers, forgets password or changes password
 
 ```
-npx nx release
+   EMAIL_HOST=smtp.mailtrap.io
+   EMAIL_PORT=2525
+   EMAIL_AUTH_USER=[:user]
+   EMAIL_AUTH_PASSWORD=[:password]
+   EMAIL_DEBUG=true
+   EMAIL_LOGGER=true
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+## Config settings .env to connect MySQL
 
-[Learn more about Nx release &raquo;](hhttps://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Once the database has been configured, start the Nest App via `pnpm run start:dev` it automatically synchronizes the entities so it is ready to use. :heart_eyes_cat:
 
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
+```
+   TYPEORM_CONNECTION = "mysql"
+   TYPEORM_HOST = "localhost"
+   TYPEORM_PORT = 3306
+   TYPEORM_USERNAME = [:user]
+   TYPEORM_PASSWORD = [:password]
+   TYPEORM_DATABASE = [:database]
+   TYPEORM_AUTO_SCHEMA_SYNC = true
+   TYPEORM_ENTITIES = "dist/**/*.entity.js"
+   TYPEORM_SUBSCRIBERS = "dist/subscriber/**/*.js"
+   TYPEORM_MIGRATIONS = "dist/migrations/**/*.js"
+   TYPEORM_ENTITIES_DIR = "src/entity"
+   TYPEORM_MIGRATIONS_DIR = "src/migration"
+   TYPEORM_SUBSCRIBERS_DIR = "src/subscriber"
 ```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+## Install TypeScript Node
 
-```sh
-npx nx sync:check
+```bash
+   pnpm install -g ts-node
 ```
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+## Running migrations with typeorm
 
+```bash
+   ts-node node_modules/.bin/typeorm migration:run -d dist/typeorm-cli.config
+```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+or
 
-## Install Nx Console
+```bash
+   node_modules/.bin/typeorm migration:run -d dist/typeorm-cli.config
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Running the app
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+    # development
+    $ pnpm start
 
-## Useful links
+    # watch mode
+    $ pnpm start:dev
 
-Learn more:
+    # production mode
+    $ pnpm start:prod
+```
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Running the app in REPL mode
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+   pnpm start --entryFile repl
+```
+
+or
+
+```bash
+   pnpm start:repl
+```
+
+## Docker
+
+There is a `docker-compose.yml` file for starting MySQL with Docker.
+
+`$ docker-compose up db`
+
+After running, you can stop the Docker container with
+
+`$ docker-compose down`
+
+## Url Swagger for Api Documentation
+
+```
+
+http://127.0.0.1:3000/docs
+
+```
+
+or
+
+```
+
+http://127.0.0.1:3000/docs-json
+
+```
+
+or
+
+```
+
+http://127.0.0.1:3000/docs-yaml
+
+```
+
+Configure `SWAGGER_USER` and `SWAGGER_PASSWORD` in the .env file for to access the Swagger(Open API) documentation with basic authentication. `NODE_ENV`
+must not be equal to "production" otherwise the Swagger is not displayed.
+
+```
+NODE_ENV=[:enviroments]
+SWAGGER_USER=[:user]
+SWAGGER_PASSWORD=[:password]
+
+```
+
+## Configuring the SERVER_PORT environment variable as the default port if you don't want to use the default
+
+```
+   SERVER_PORT=3333
+```
+
+## Configuring the ENDPOINT_URL_CORS environment variable for app frontend
+
+```
+   ENDPOINT_URL_CORS='http://127.0.0.1:4200'
+```
+
+## Getting secure resource with Curl
+
+```bash
+    curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:3000/api/secure  -H 'Authorization: Bearer [:token]'
+```
+
+## Generate Token JWT Authentication with Curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com", "password": "mysecret"}' http://127.0.0.1:3000/api/auth/login
+```
+
+## Registration user with Curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X POST -d '{"name": "tony", "email": "tony_admin@nest.com", "username":"tony_admin", "password": "mysecret"}' http://127.0.0.1:3000/api/auth/register
+```
+
+## Refresh token with curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X POST -d '{"refreshToken": "[:token]"}' http://127.0.0.1:3000/api/auth/refresh-tokens
+```
+
+## Forgot password with curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com"}' http://127.0.0.1:3000/api/auth/forgot-password
+```
+
+## Change password User with curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X POST -d '{"email": "tony_admin@nest.com", "password": "new_password"}' http://127.0.0.1:3000/api/auth/change-password  -H 'Authorization: Bearer [:token]'
+```
+
+## Update profile User with curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X PUT -d '{"name": "tony", "email": "tony_admin@nest.com", "username": "tony_admin"}' http://127.0.0.1:3000/api/users/:id/profile  -H 'Authorization: Bearer [:token]'
+```
+
+## Users list with Curl
+
+```bash
+   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X GET http://127.0.0.1:3000/api/users  -H 'Authorization: Bearer [:token]'
+```
+
+## User by Id with Curl
+
+```bash
+   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X GET http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
+```
+
+## Update User with Curl
+
+```bash
+   curl -H 'content-type: application/json' -v -X PUT -d '{"name": "tony", "email": "tony_admin@nest.com", "username": "tony_admin", "password":"password_update"}' http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
+```
+
+## Delete User by Id with Curl
+
+```bash
+   curl -H 'content-type: application/json' -H 'Accept: application/json' -v -X DELETE http://127.0.0.1:3000/api/users/:id  -H 'Authorization: Bearer [:token]'
+```
+
+## License
+
+[MIT licensed](LICENSE)

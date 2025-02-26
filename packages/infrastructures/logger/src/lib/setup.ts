@@ -29,8 +29,8 @@ export function setupLoggerModule<ClsType extends ClsStore>(
   customProps: (
     req: IncomingMessage,
     res: ServerResponse<IncomingMessage>,
-    clsService?: ClsService<ClsType>,
-  ) => Record<string, string> = () => ({}),
+    clsService?: ClsService<ClsType>
+  ) => Record<string, string> = () => ({})
 ) {
   return LoggerModule.forRootAsync({
     // imports: [ConfigModule], // ConfigModule 被配置为全局模块，所以不需要在这里导入，避免重复初始化
@@ -38,7 +38,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
     providers: [],
     useFactory: async (
       configService: ConfigService<ConfigKeyPaths>,
-      clsService?: ClsService<ClsType>,
+      clsService?: ClsService<ClsType>
     ) => {
       const config = configService.get<ILoggerConfig>('logger');
       return {
@@ -59,7 +59,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
             req: IncomingMessage,
             res: ServerResponse,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            val: any,
+            val: any
           ) => {
             return {
               reqId: req.id,
@@ -79,7 +79,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
             res: ServerResponse,
             error: Error,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            val: any,
+            val: any
           ) => {
             return {
               statusMessage: res.statusMessage,
@@ -95,7 +95,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           customSuccessMessage: (
             req: IncomingMessage,
             res: ServerResponse,
-            responseTime: number,
+            responseTime: number
           ) => {
             return `Finished Endpoint: ${req.method} ${req.url} for ${responseTime}ms`;
           },
@@ -103,7 +103,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           customErrorMessage: (
             req: IncomingMessage,
             res: ServerResponse,
-            error: Error,
+            error: Error
           ) => {
             return `Failed Endpoint: ${req.method} ${req.url} Error - ${error.message}.`;
           },

@@ -10,6 +10,9 @@
     "rxjs": "^7.8.2",
     "pino": "^9.6.0",
     "@aiofc/config": "0.0.1",
-    "@nestjs/config": "^4.0.0"
+    "@nestjs/config": "^4.0.0",
+    "pino-http": "^10.4.0",
+    "nestjs-cls": "^5.4.0",
+    "nestjs-pino": "^4.3.1"
   }
 }

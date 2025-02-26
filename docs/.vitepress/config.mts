@@ -17,6 +17,13 @@ export default defineConfig({
 
     sidebar: [
       {
+        text: 'Build',
+        items: [
+          { text: 'index', link: '/build/index' },
+          { text: 'architecture', link: '/build/architecture' },
+        ],
+      },
+      {
         text: 'Technologies',
         items: [
           { text: 'pnpm', link: '/technologies/pnpm' },

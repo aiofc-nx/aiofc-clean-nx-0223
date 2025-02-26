@@ -28,6 +28,8 @@ throttler:
 swagger:
   enable: true
   path: 'doc'
+  user: 'admin'
+  password: '123456'
 
 database:
   user: postgres
@@ -58,3 +60,12 @@ redis:
     name: master
     password: ''
     db: 5
+
+email:
+  host: 'smtp.mailtrap.io'
+  port: 2525
+  auth:
+    user: 'admin'
+    password: '123456'
+  debug: true
+  logger: true

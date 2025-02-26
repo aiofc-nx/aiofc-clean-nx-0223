@@ -6,8 +6,10 @@
     "types": ["node"],
     "declaration": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "target": "es2021"
+    "emitDecoratorMetadata": true
+    // "strictNullChecks": false, // 不严格检查 null
+
+    // "useUnknownInCatchVariables": false,
   },
   "include": ["src/**/*.ts"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
