@@ -5,27 +5,26 @@ import { ConfigModule, registerAs } from '@nestjs/config';
 import * as yaml from 'js-yaml';
 
 import {
-  allConfigSchema,
+  allZodSchema,
   IAppConfig,
-  ICorsConfig,
   IDatabaseConfig,
   ILoggerConfig,
   IRedisConfig,
   ISwaggerConfig,
   IThrottlerConfig,
-} from './config.schema';
+} from './zod-schema';
+
 // 获取配置文件，并校验配置项
 const validateConfig = (yamlFilePath: string) => {
   const config = yaml.load(fs.readFileSync(yamlFilePath, 'utf8')) as Record<
     string,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any
   >;
   console.log(
     `已读取文件：${yamlFilePath} \n ${JSON.stringify(config, null, 2)}`
   );
   // 校验配置项
-  const parsedConfig = allConfigSchema.safeParse(config); // 使用 Zod 进行校验
+  const parsedConfig = allZodSchema.safeParse(config); // 使用 Zod 进行校验
   if (!parsedConfig.success) {
     throw new Error(`配置验证失败: ${JSON.stringify(parsedConfig.error)}`);
   } else {
@@ -44,7 +43,6 @@ export const setupConfigModule: (
       logger: ILoggerConfig;
       swagger: ISwaggerConfig;
       database: IDatabaseConfig;
-      cors: ICorsConfig;
       throttler: IThrottlerConfig;
       redis: IRedisConfig;
     };
@@ -55,8 +53,6 @@ export const setupConfigModule: (
   const LoggerConfig = registerAs('logger', () => parsedConfig.data.logger);
   // 注册Swagger配置
   const SwaggerConfig = registerAs('swagger', () => parsedConfig.data.swagger);
-  // 注册CORS配置
-  const CorsConfig = registerAs('cors', () => parsedConfig.data.cors);
   // 注册限流配置
   const ThrottlerConfig = registerAs(
     'throttler',
@@ -77,9 +73,8 @@ export const setupConfigModule: (
       LoggerConfig,
       SwaggerConfig,
       DatabaseConfig,
-      CorsConfig,
       ThrottlerConfig,
       RedisConfig,
-    ], // 传入 YAML 文件路径
+    ],
   });
 };

@@ -28,7 +28,9 @@
         "packages/infrastructures/fastify-server/src/index.ts"
       ],
       "@aiofc/logger": ["packages/infrastructures/logger/src/index.ts"],
+      "@aiofc/redis": ["packages/infrastructures/redis/src/index.ts"],
       "@aiofc/rest": ["packages/infrastructures/rest/src/index.ts"],
+      "@aiofc/shared": ["packages/infrastructures/shared/src/index.ts"],
       "@aiofc/swagger": ["packages/infrastructures/swagger/src/index.ts"],
       "@aiofc/typings": ["packages/infrastructures/typings/src/index.ts"],
       "@aiofc/utils": ["packages/infrastructures/utils/src/index.ts"]

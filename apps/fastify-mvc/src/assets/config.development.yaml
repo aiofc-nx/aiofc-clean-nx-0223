@@ -2,22 +2,21 @@ app:
   port: 3000
   globalPrefix: 'api'
   NODE_ENV: development
+  cors:
+    enabled: true
+    origin:
+      - 'http://localhost:3000'
+      - 'http://localhost:3001'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+    preflight_continue: false
+    options_success_status: 204
+    credentials: true
+    max_age: 3600
 
 logger:
   colorize: true
   defaultLevel: info
   prettyLogs: true
-
-cors:
-  enabled: true
-  origin:
-    - 'http://localhost:3000'
-    - 'http://localhost:3001'
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
-  preflight_continue: false
-  options_success_status: 204
-  credentials: true
-  max_age: 3600
 
 throttler:
   enabled: true

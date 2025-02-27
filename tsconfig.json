@@ -31,6 +31,12 @@
     },
     {
       "path": "./packages/infrastructures/fastify-server"
+    },
+    {
+      "path": "./packages/infrastructures/shared"
+    },
+    {
+      "path": "./packages/infrastructures/redis"
     }
   ]
 }

@@ -4,7 +4,7 @@
     "outDir": "../../../dist/out-tsc",
     "declaration": true,
     "types": ["node"],
-    "target": "es2022",
+    "target": "es2021",
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
@@ -15,7 +15,7 @@
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     {
-      "path": "../typings/tsconfig.lib.json"
+      "path": "../config/tsconfig.lib.json"
     }
   ]
 }

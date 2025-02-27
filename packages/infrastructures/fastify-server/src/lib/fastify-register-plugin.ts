@@ -1,4 +1,4 @@
-import { ICorsConfig } from '@aiofc/config';
+import { IAppConfig } from '@aiofc/config';
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 
 import { getCorsConfig } from './cors.option';
@@ -6,7 +6,7 @@ import { getHelmetConfig } from './security.option';
 
 export async function fastifyRegisterPlugins(
   app: NestFastifyApplication,
-  corsConfig: ICorsConfig
+  appConfig: IAppConfig
 ) {
   await app.register(require('@fastify/multipart'), {
     limits: {
@@ -16,7 +16,7 @@ export async function fastifyRegisterPlugins(
     },
   });
 
-  await app.register(require('@fastify/cors'), getCorsConfig(corsConfig));
+  await app.register(require('@fastify/cors'), getCorsConfig(appConfig));
 
   await app.register(require('@fastify/rate-limit'), {
     max: 100,

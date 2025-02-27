@@ -1,7 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
 
-import { ConfigKeyPaths, ILoggerConfig } from '@aiofc/config';
-import { ConfigService } from '@nestjs/config';
+import { ConfigKeyPaths, ConfigService, getLoggerConfig } from '@aiofc/config';
 import { ClsService, ClsStore } from 'nestjs-cls';
 
 import { LoggerModule } from './logger.module';
@@ -40,7 +39,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
       configService: ConfigService<ConfigKeyPaths>,
       clsService?: ClsService<ClsType>
     ) => {
-      const config = configService.get<ILoggerConfig>('logger');
+      const config = getLoggerConfig(configService);
       return {
         renameContext: 'class',
         pinoHttp: {
@@ -121,9 +120,9 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           // 自动记录请求日志
           autoLogging: true,
           // 定义其他自定义请求属性
-          level: config?.defaultLevel,
+          level: config.defaultLevel,
           // 安装" pino-pretty"软件包，以便使用以下选项
-          transport: config?.prettyLogs ? { target: 'pino-pretty' } : undefined,
+          transport: config.prettyLogs ? { target: 'pino-pretty' } : undefined,
         },
       };
     },
