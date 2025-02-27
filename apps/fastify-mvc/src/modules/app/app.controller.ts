@@ -1,8 +1,8 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ApiOkResponse, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { AuthGuard } from '../../iam/login/decorators/auth-guard.decorator';
-import { AuthType } from '../../iam/login/enums/auth-type.enum';
+import { AuthGuard } from '../iam/login/decorators/auth-guard.decorator';
+import { AuthType } from '../iam/login/enums/auth-type.enum';
 
 import { AppService } from './app.service';
 

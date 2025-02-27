@@ -5,8 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { config } from 'dotenv';
 import { Repository } from 'typeorm';
 
-import { HashingService } from '../../common/hashing/hashing.service';
-import { DataSource } from '../../constants';
+import { HashingService } from '../../../common/hashing/hashing.service';
+import { DataSource } from '../../../shared/constants';
 import { Users } from '../models/users.model';
 
 import { UsersTypeOrmRepository } from './implementations/users.typeorm.repository';

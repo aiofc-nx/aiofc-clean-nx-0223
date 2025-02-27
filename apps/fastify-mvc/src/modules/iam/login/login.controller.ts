@@ -6,9 +6,8 @@ import {
   ApiBearerAuth,
 } from '@nestjs/swagger';
 
-import { LoginDto } from '../login/dto/login.dto';
-
 import { AuthGuard } from './decorators/auth-guard.decorator';
+import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { AuthType } from './enums/auth-type.enum';
 import { LoginService } from './login.service';

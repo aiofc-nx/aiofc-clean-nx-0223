@@ -4,11 +4,18 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import globals from 'globals';
 
 export default [
+  // Any other config imports go at the top
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/node_modules', '**/eslint.config.mjs'],
+    ignores: [
+      '**/dist',
+      '**/node_modules',
+      '**/eslint.config.mjs',
+      '**/webpack.config.js',
+      '**/package.json',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -26,6 +33,7 @@ export default [
           ],
         },
       ],
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
     },
   },
   {
@@ -57,13 +65,6 @@ export default [
           'newlines-between': 'always',
         },
       ],
-    },
-  },
-  // 对测试文件放宽检查
-  {
-    files: ['**/*.spec.ts', '**/*.test.ts'],
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'off', // 或 'off'
     },
   },
   {
@@ -118,6 +119,12 @@ export default [
       ],
     },
   },
-  // Any other config imports go at the top
   eslintPluginPrettierRecommended,
+  // 对测试文件放宽检查 - 放在最后确保不被覆盖
+  {
+    files: ['**/*.spec.ts', '**/*.test.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
 ];

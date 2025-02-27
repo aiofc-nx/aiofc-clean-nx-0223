@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { HashingService } from '../../common/hashing/hashing.service';
-import { registrationEmail } from '../../common/mailer/mailer.constants';
-import { MailerService } from '../../common/mailer/mailer.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
+import { registrationEmail } from '../../../common/mailer/mailer.constants';
+import { MailerService } from '../../../common/mailer/mailer.service';
 import { AccountsUsers } from '../../users/interfaces/accounts-users.interface';
 import { UsersService } from '../../users/users.service';
 

@@ -2,10 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { HashingService } from '../../common/hashing/hashing.service';
-import { forgotPasswordEmail } from '../../common/mailer/mailer.constants';
-import { MailerService } from '../../common/mailer/mailer.service';
-import { UtilsService } from '../../common/utils/utils.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
+import { forgotPasswordEmail } from '../../../common/mailer/mailer.constants';
+import { MailerService } from '../../../common/mailer/mailer.service';
+import { UtilsService } from '../../../common/utils/utils.service';
 import { Users } from '../../users/models/users.model';
 
 import { ForgotPasswordDto } from './dto/forgot-password.dto';

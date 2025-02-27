@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { MailerService } from '../../common/mailer/mailer.service';
+import { MailerService } from '../../../common/mailer/mailer.service';
 import { Users } from '../../users/models/users.model';
 import { UsersService } from '../../users/users.service';
 
@@ -16,8 +16,7 @@ const changePasswordUser = {
 
 describe('ChangePasswordService', () => {
   let service: ChangePasswordService;
-  let repository: Repository<Users>;
-
+  let _repository: Repository<Users>;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -52,7 +51,7 @@ describe('ChangePasswordService', () => {
     }).compile();
 
     service = module.get<ChangePasswordService>(ChangePasswordService);
-    repository = module.get<Repository<Users>>(getRepositoryToken(Users));
+    _repository = module.get<Repository<Users>>(getRepositoryToken(Users));
   });
 
   describe('change password user', () => {

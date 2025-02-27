@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { changePasswordEmail } from '../../common/mailer/mailer.constants';
-import { MailerService } from '../../common/mailer/mailer.service';
+import { changePasswordEmail } from '../../../common/mailer/mailer.constants';
+import { MailerService } from '../../../common/mailer/mailer.service';
 import { UsersService } from '../../users/users.service';
 
 import { ChangePasswordDto } from './dto/change-password.dto';

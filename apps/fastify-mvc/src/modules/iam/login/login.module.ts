@@ -4,8 +4,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { BcryptService } from '../../common/hashing/bcrypt.service';
-import { HashingService } from '../../common/hashing/hashing.service';
+import { BcryptService } from '../../../common/hashing/bcrypt.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
 import { Users } from '../../users/models/users.model';
 import { provideUsersRepository } from '../../users/repositories/users.repository.provider';
 import { UsersService } from '../../users/users.service';

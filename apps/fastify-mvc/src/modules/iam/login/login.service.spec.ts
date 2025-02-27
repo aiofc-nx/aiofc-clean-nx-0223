@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
-import { HashingService } from '../../common/hashing/hashing.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
 import { Users } from '../../users/models/users.model';
 import { UsersService } from '../../users/users.service';
 
@@ -41,7 +41,7 @@ const payload = {
   email: 'test@example.com',
 };
 
-const refreshTokenDto = {
+const _refreshTokenDto = {
   refreshToken: 'token',
 };
 
@@ -51,7 +51,7 @@ describe('LoginService', () => {
   let loginService: LoginService;
   let usersService: UsersService;
   let hashingService: HashingService;
-  let config: ConfigType<typeof jwtConfig>;
+  let _config: ConfigType<typeof jwtConfig>;
   let jwtService: JwtService;
 
   beforeEach(async () => {
@@ -99,7 +99,7 @@ describe('LoginService', () => {
       ],
     }).compile();
 
-    config = module.get<ConfigType<typeof jwtConfig>>(jwtConfig.KEY);
+    _config = module.get<ConfigType<typeof jwtConfig>>(jwtConfig.KEY);
     loginService = module.get<LoginService>(LoginService);
     usersService = module.get<UsersService>(UsersService);
     hashingService = module.get<HashingService>(HashingService);

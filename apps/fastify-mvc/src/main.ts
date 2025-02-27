@@ -14,11 +14,11 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 
+import { AppModule } from './app.module';
 import { configureAuthSwaggerDocs } from './helper/configure-auth-swagger-docs.helper';
 import { configureSwaggerDocs } from './helper/configure-swagger-docs.helper';
-import { fastifyAddHook } from './http-server/fastify-add-hook';
-import { fastifyRegisterPlugins } from './http-server/fastify-register-plugin';
-import { AppModule } from './modules/app';
+import { fastifyAddHook } from './modules/app/infra/fastify-add-hook';
+import { fastifyRegisterPlugins } from './modules/app/infra/fastify-register-plugin';
 
 function buildFastifyAdapter(): FastifyAdapter {
   const REQUEST_ID_HEADER = 'x-request-id';
@@ -56,9 +56,9 @@ async function bootstrap() {
   process.env.NODE_ENV = appConfig?.NODE_ENV; // 设置环境变量,后面会用到一定要设置
 
   //  Fastify 设置
-  if (corsConfig && appConfig) {
+  fastifyAddHook(app);
+  if (corsConfig) {
     fastifyRegisterPlugins(app, corsConfig);
-    fastifyAddHook(app);
   }
   // 使用PinoLogger
   const pino = app.get(Logger);

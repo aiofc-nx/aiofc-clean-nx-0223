@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { UtilsModule } from '../common/utils/utils.module';
+import { UtilsModule } from '../../common/utils/utils.module';
 import { UsersModule } from '../users/users.module';
 
 import { ChangePasswordModule } from './change-password/change-password.module';

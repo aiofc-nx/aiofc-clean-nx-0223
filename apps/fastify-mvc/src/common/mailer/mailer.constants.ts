@@ -1,5 +1,5 @@
-import { ChangePasswordDto } from '../../iam/change-password/dto/change-password.dto';
-import { RegisterUserDto } from '../../iam/register/dto/register-user.dto';
+import { ChangePasswordDto } from '../../modules/iam/change-password/dto/change-password.dto';
+import { RegisterUserDto } from '../../modules/iam/register/dto/register-user.dto';
 
 export const registrationEmail = (user: RegisterUserDto) => {
   return `<html>

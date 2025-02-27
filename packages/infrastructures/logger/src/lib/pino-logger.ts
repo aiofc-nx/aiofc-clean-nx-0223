@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, Inject, Scope } from '@nestjs/common';
 import pino from 'pino';
 

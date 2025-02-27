@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, LoggerService, Inject } from '@nestjs/common';
 import { Level } from 'pino';
 

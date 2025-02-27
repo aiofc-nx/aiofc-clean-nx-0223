@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { MailerService } from '../../common/mailer/mailer.service';
+import { MailerService } from '../../../common/mailer/mailer.service';
 import { UsersService } from '../../users/users.service';
 
 import { RegisterUserDto } from './dto/register-user.dto';

@@ -5,11 +5,11 @@ import { setupLoggerModule } from '@aiofc/logger';
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 
-import { AllExceptionFilter } from '../../filter/all-exception.filter';
-import { setupClsModule } from '../../helper/cls-setup';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AllExceptionFilter } from './filter/all-exception.filter';
+import { setupClsModule } from './helper/cls-setup';
+import { setupThrottlerModule } from './helper/throtter-setup';
+import { AppController } from './modules/app/app.controller';
+import { AppService } from './modules/app/app.service';
 
 @Module({
   imports: [
@@ -21,6 +21,8 @@ import { AppService } from './app.service';
     setupLoggerModule(),
     // 缓存模块
     setupClsModule(),
+    // 节流模块
+    setupThrottlerModule(),
   ],
   controllers: [AppController],
   providers: [

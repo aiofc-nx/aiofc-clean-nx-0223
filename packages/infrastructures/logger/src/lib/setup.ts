@@ -57,8 +57,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           // 成功响应日志对象格式化
           customSuccessObject: (
             req: IncomingMessage,
-            res: ServerResponse,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            _res: ServerResponse,
             val: any
           ) => {
             return {
@@ -75,10 +74,9 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           },
           // 错误响应日志对象格式化
           customErrorObject: (
-            req: IncomingMessage,
+            _req: IncomingMessage,
             res: ServerResponse,
-            error: Error,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            _error: Error,
             val: any
           ) => {
             return {
@@ -94,7 +92,7 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           // 请求成功时的日志消息
           customSuccessMessage: (
             req: IncomingMessage,
-            res: ServerResponse,
+            _res: ServerResponse,
             responseTime: number
           ) => {
             return `Finished Endpoint: ${req.method} ${req.url} for ${responseTime}ms`;
@@ -102,13 +100,13 @@ export function setupLoggerModule<ClsType extends ClsStore>(
           // 请求失败时的日志消息
           customErrorMessage: (
             req: IncomingMessage,
-            res: ServerResponse,
+            _res: ServerResponse,
             error: Error
           ) => {
             return `Failed Endpoint: ${req.method} ${req.url} Error - ${error.message}.`;
           },
           // 根据状态码动态设置日志级别
-          customLogLevel: function (req, res, err) {
+          customLogLevel: function (_req, res, err) {
             if (res.statusCode >= 400 && res.statusCode < 500) {
               return 'info';
             } else if (res.statusCode >= 500 || err) {

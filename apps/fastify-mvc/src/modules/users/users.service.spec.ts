@@ -1,8 +1,8 @@
 import { HttpException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { BcryptService } from '../common/hashing/bcrypt.service';
-import { HashingService } from '../common/hashing/hashing.service';
+import { BcryptService } from '../../common/hashing/bcrypt.service';
+import { HashingService } from '../../common/hashing/hashing.service';
 
 import { UserDto } from './dto/user.dto';
 import { UsersTypeOrmRepository } from './repositories/implementations/users.typeorm.repository';

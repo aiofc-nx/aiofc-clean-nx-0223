@@ -3,9 +3,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { HashingService } from '../../common/hashing/hashing.service';
-import { MailerService } from '../../common/mailer/mailer.service';
-import { UtilsService } from '../../common/utils/utils.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
+import { MailerService } from '../../../common/mailer/mailer.service';
+import { UtilsService } from '../../../common/utils/utils.service';
 import { Users } from '../../users/models/users.model';
 import { UsersService } from '../../users/users.service';
 
@@ -22,8 +22,8 @@ const user = {
 
 describe('ForgotPasswordService', () => {
   let service: ForgotPasswordService;
-  let repository: Repository<Users>;
-  let mailerService: MailerService;
+  let _repository: Repository<Users>;
+  let _mailerService: MailerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -65,8 +65,8 @@ describe('ForgotPasswordService', () => {
     }).compile();
 
     service = module.get<ForgotPasswordService>(ForgotPasswordService);
-    mailerService = module.get<MailerService>(MailerService);
-    repository = module.get<Repository<Users>>(getRepositoryToken(Users));
+    _mailerService = module.get<MailerService>(MailerService);
+    _repository = module.get<Repository<Users>>(getRepositoryToken(Users));
   });
 
   describe('forgot password user', () => {

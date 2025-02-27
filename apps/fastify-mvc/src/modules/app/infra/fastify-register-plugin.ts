@@ -33,6 +33,5 @@ export async function fastifyRegisterPlugins(
   // 注册压缩
   await app.register(require('@fastify/compress'));
   // TODO: 注册CSRF
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   await app.register(require('@fastify/csrf-protection') as any);
 }

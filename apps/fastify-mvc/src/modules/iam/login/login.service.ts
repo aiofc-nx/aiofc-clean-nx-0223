@@ -8,7 +8,7 @@ import {
 import { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
-import { HashingService } from '../../common/hashing/hashing.service';
+import { HashingService } from '../../../common/hashing/hashing.service';
 import { AccountsUsers } from '../../users/interfaces/accounts-users.interface';
 import { Users } from '../../users/models/users.model';
 import { UsersService } from '../../users/users.service';
