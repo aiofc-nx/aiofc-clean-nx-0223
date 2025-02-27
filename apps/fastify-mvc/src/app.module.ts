@@ -1,13 +1,11 @@
 import path from 'path';
 
 import { setupConfigModule } from '@aiofc/config';
+import { setupClsModule } from '@aiofc/fastify-server';
+import { setupThrottlerModule } from '@aiofc/fastify-server';
 import { setupLoggerModule } from '@aiofc/logger';
 import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
 
-import { AllExceptionFilter } from './filter/all-exception.filter';
-import { setupClsModule } from './helper/cls-setup';
-import { setupThrottlerModule } from './helper/throtter-setup';
 import { AppController } from './modules/app/app.controller';
 import { AppService } from './modules/app/app.service';
 
@@ -25,12 +23,6 @@ import { AppService } from './modules/app/app.service';
     setupThrottlerModule(),
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_FILTER,
-      useClass: AllExceptionFilter,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

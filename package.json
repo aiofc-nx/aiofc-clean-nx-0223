@@ -82,8 +82,10 @@
   "dependencies": {
     "@aiofc/config": "workspace:*",
     "@aiofc/constants": "workspace:*",
+    "@aiofc/fastify-server": "workspace:*",
     "@aiofc/logger": "workspace:*",
     "@aiofc/rest": "workspace:*",
+    "@aiofc/swagger": "workspace:*",
     "@aiofc/typings": "workspace:*",
     "@aiofc/utils": "workspace:*",
     "@fastify/compress": "^8.0.1",

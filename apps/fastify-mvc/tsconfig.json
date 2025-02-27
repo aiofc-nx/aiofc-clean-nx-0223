@@ -4,13 +4,13 @@
   "include": [],
   "references": [
     {
-      "path": "../../packages/infrastructures/logger"
-    },
-    {
       "path": "../../packages/infrastructures/constants"
     },
     {
-      "path": "../../packages/infrastructures/utils"
+      "path": "../../packages/infrastructures/fastify-server"
+    },
+    {
+      "path": "../../packages/infrastructures/logger"
     },
     {
       "path": "../../packages/infrastructures/config"

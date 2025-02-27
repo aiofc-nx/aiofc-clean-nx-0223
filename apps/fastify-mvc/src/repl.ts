@@ -4,7 +4,7 @@ import { join } from 'path';
 import { Logger } from '@nestjs/common';
 import { repl } from '@nestjs/core';
 
-import { AppModule } from './modules/app';
+import { AppModule } from './app.module';
 
 (async () => {
   const replServer = await repl(AppModule);

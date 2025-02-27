@@ -14,12 +14,18 @@ importers:
       '@aiofc/constants':
         specifier: workspace:*
         version: link:packages/infrastructures/constants
+      '@aiofc/fastify-server':
+        specifier: workspace:*
+        version: link:packages/infrastructures/fastify-server
       '@aiofc/logger':
         specifier: workspace:*
         version: link:packages/infrastructures/logger
       '@aiofc/rest':
         specifier: workspace:*
         version: link:packages/infrastructures/rest
+      '@aiofc/swagger':
+        specifier: workspace:*
+        version: link:packages/infrastructures/swagger
       '@aiofc/typings':
         specifier: workspace:*
         version: link:packages/infrastructures/typings
@@ -301,6 +307,12 @@ importers:
         specifier: ^2.3.0
         version: 2.8.1
 
+  packages/infrastructures/fastify-server:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
   packages/infrastructures/logger:
     dependencies:
       '@aiofc/config':
@@ -345,6 +357,12 @@ importers:
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  packages/infrastructures/swagger:
+    dependencies:
       tslib:
         specifier: ^2.3.0
         version: 2.8.1

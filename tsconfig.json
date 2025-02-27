@@ -25,6 +25,12 @@
     },
     {
       "path": "./packages/infrastructures/rest"
+    },
+    {
+      "path": "./packages/infrastructures/swagger"
+    },
+    {
+      "path": "./packages/infrastructures/fastify-server"
     }
   ]
 }

@@ -1,31 +1,35 @@
 {
   "compilerOptions": {
-    "module": "commonjs", // 使用 CommonJS 模块系统
-    "target": "es2022", // 编译目标为 ES2022
-    "lib": ["es2022", "dom"], // 包含 ES2022 和 DOM 库
-    "composite": true, // 启用复合项目
-    "declaration": false, // 不生成声明文件
-    "esModuleInterop": true, // 允许 ES 模块与 CommonJS 模块互操作
-    "forceConsistentCasingInFileNames": true, // 强制文件名一致性
-    "strict": true, // 启用所有严格类型检查选项
-    "skipLibCheck": true, // 跳过库文件的类型检查
-    "removeComments": true, // 移除注释
-    "declarationMap": true, // 生成声明文件映射
-    "sourceMap": true, // 生成源映射文件
-    "moduleResolution": "node", // 使用 Node.js 模块解析策略
-    "resolveJsonModule": true, // 允许导入 JSON 模块
-    "emitDecoratorMetadata": true, // 生成装饰器的元数据
-    "experimentalDecorators": true, // 启用实验性装饰器
-    "importHelpers": true, // 使用 TypeScript 的帮助函数
-    "skipDefaultLibCheck": true, // 跳过默认库的类型检查
+    "module": "commonjs",
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "composite": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "skipDefaultLibCheck": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".", // 基础 URL 设置为当前目录
-    "rootDir": ".", // 根目录设置为当前目录
+    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "@aiofc/config": ["packages/infrastructures/config/src/index.ts"],
       "@aiofc/constants": ["packages/infrastructures/constants/src/index.ts"],
+      "@aiofc/fastify-server": [
+        "packages/infrastructures/fastify-server/src/index.ts"
+      ],
       "@aiofc/logger": ["packages/infrastructures/logger/src/index.ts"],
       "@aiofc/rest": ["packages/infrastructures/rest/src/index.ts"],
+      "@aiofc/swagger": ["packages/infrastructures/swagger/src/index.ts"],
       "@aiofc/typings": ["packages/infrastructures/typings/src/index.ts"],
       "@aiofc/utils": ["packages/infrastructures/utils/src/index.ts"]
     }
