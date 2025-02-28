@@ -1,11 +1,9 @@
-# config
+# @aiofc/config
 
-This library was generated with [Nx](https://nx.dev).
+我们在nestjs内置的config基础上进行了以下扩展：
 
-## Building
+* 以yaml格式文件作为配置文件
+* 增加了zod校验
+* 增加了类型安全
 
-Run `nx build config` to build the library.
-
-## Running unit tests
-
-Run `nx test config` to execute the unit tests via [Jest](https://jestjs.io).
+## 使用方法
