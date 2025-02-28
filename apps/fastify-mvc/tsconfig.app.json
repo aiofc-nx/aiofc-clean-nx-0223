@@ -15,6 +15,9 @@
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     {
+      "path": "../../packages/infrastructures/redis/tsconfig.lib.json"
+    },
+    {
       "path": "../../packages/infrastructures/rest/tsconfig.lib.json"
     },
     {

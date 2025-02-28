@@ -4,6 +4,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/infrastructures/redis"
+    },
+    {
       "path": "../../packages/infrastructures/rest"
     },
     {

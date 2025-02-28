@@ -11,6 +11,7 @@ import { setupClsModule } from '@aiofc/fastify-server';
 import { setupThrottlerModule } from '@aiofc/fastify-server';
 import { setupLoggerModule } from '@aiofc/logger';
 import { Module } from '@nestjs/common';
+import { TerminusModule } from '@nestjs/terminus';
 
 import { AppController } from './app/app.controller';
 import { AppService } from './app/app.service';
@@ -28,6 +29,8 @@ import { AppService } from './app/app.service';
     setupClsModule(),
     // 节流模块
     setupThrottlerModule(),
+    // 健康检查模块
+    TerminusModule,
     // 加密模块
     CryptoModule.register({
       isGlobal: true,

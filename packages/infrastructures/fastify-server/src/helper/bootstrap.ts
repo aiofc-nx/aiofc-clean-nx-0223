@@ -5,6 +5,7 @@ import {
   getSwaggerConfig,
 } from '@aiofc/config';
 import { Logger } from '@aiofc/logger';
+import { RedisUtility } from '@aiofc/redis';
 import { configureAuthSwaggerDocs, configureSwaggerDocs } from '@aiofc/swagger';
 import { generateRandomId } from '@aiofc/utils';
 import { RequestMethod, ValidationPipe } from '@nestjs/common';
@@ -32,6 +33,7 @@ function buildFastifyAdapter(): FastifyAdapter {
 }
 
 export async function bootstrap(module: any) {
+  await RedisUtility.client();
   // 创建应用
   const fastifyAdapter = buildFastifyAdapter();
   const app = await NestFactory.create<NestFastifyApplication>(

@@ -24,6 +24,9 @@
       "path": "../swagger/tsconfig.lib.json"
     },
     {
+      "path": "../redis/tsconfig.lib.json"
+    },
+    {
       "path": "../logger/tsconfig.lib.json"
     },
     {

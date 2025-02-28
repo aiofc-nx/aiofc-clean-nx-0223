@@ -24,6 +24,9 @@
       "path": "../swagger"
     },
     {
+      "path": "../redis"
+    },
+    {
       "path": "../logger"
     },
     {

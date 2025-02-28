@@ -1,22 +1,16 @@
-import { IRedisConfig } from '@aiofc/config';
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { RedisConfig } from '@aiofc/config';
 import { Redis, Cluster } from 'ioredis';
 
-@Injectable()
 export class RedisUtility {
-  private _instance: Redis | Cluster;
-  private initializing: Promise<Redis | Cluster> | null = null;
+  static get instance(): Redis | Cluster {
+    return this._instance;
+  }
+  private static _instance: Redis | Cluster;
+  private static initializing: Promise<Redis | Cluster> | null = null;
 
-  constructor(
-    @Inject(ConfigService) private readonly configService: ConfigService
-  ) {}
-
-  private async createInstance(): Promise<Redis | Cluster> {
-    const config = this.configService.get<IRedisConfig>('redis');
-
-    if (config?.mode === 'cluster') {
-      // 集群模式
+  private static async createInstance(): Promise<Redis | Cluster> {
+    const [config] = await Promise.all([RedisConfig()]);
+    if (config.mode === 'cluster') {
       this._instance = new Redis.Cluster(
         config.cluster.map((node) => ({
           host: node.host,
@@ -31,18 +25,17 @@ export class RedisUtility {
         }
       );
     } else {
-      // 单机模式
       this._instance = new Redis({
-        host: config?.standalone?.host,
-        port: config?.standalone?.port,
-        password: config?.standalone?.password,
-        db: config?.standalone?.db,
+        host: config.standalone.host,
+        port: config.standalone.port,
+        password: config.standalone.password,
+        db: config.standalone.db,
       });
     }
     return this._instance;
   }
 
-  public async getClient(): Promise<Redis | Cluster> {
+  public static async client(): Promise<Redis | Cluster> {
     if (!this._instance) {
       if (!this.initializing) {
         this.initializing = this.createInstance();

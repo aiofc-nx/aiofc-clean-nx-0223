@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16.3
+    environment:
+      TZ: Asia/Shanghai
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: platform
+    ports:
+      - '25432:5432'
+    volumes:
+      - platform-postgres_data:/usr/share/docker/postgresql
+      - ./deploy/postgres:/docker-entrypoint-initdb.d
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - 25050:80
+    depends_on:
+      - postgres
+  pgbouncer:
+    image: bitnami/pgbouncer:1.23.1
+    container_name: pgbouncer
+    hostname: pgbouncer
+    restart: always
+    environment:
+      - PGBOUNCER_DATABASE=*
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=platform
+      - POSTGRESQL_HOST=postgres
+      - POSTGRESQL_PORT=5432
+    ports:
+      - 6432:6432
+
+  redis:
+    image: redis/redis-stack:7.2.0-v11
+    environment:
+      TZ: Asia/Shanghai
+    command: redis-server --requirepass 123456
+    ports:
+      - '26379:6379'
+    volumes:
+      - platform-redis_data:/data
+
+volumes:
+  platform-postgres_data:
+  platform-redis_data:
+
