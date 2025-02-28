@@ -1,7 +1,7 @@
 {
-  "name": "shared",
+  "name": "crypto",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/infrastructures/shared/src",
+  "sourceRoot": "packages/infrastructures/crypto/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -18,11 +18,11 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/infrastructures/shared",
-        "tsConfig": "packages/infrastructures/shared/tsconfig.lib.json",
-        "packageJson": "packages/infrastructures/shared/package.json",
-        "main": "packages/infrastructures/shared/src/index.ts",
-        "assets": ["packages/infrastructures/shared/*.md"]
+        "outputPath": "dist/packages/infrastructures/crypto",
+        "tsConfig": "packages/infrastructures/crypto/tsconfig.lib.json",
+        "packageJson": "packages/infrastructures/crypto/package.json",
+        "main": "packages/infrastructures/crypto/src/index.ts",
+        "assets": ["packages/infrastructures/crypto/*.md"]
       }
     },
     "nx-release-publish": {

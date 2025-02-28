@@ -2,6 +2,7 @@ import { RecordNamePaths } from '@aiofc/typings';
 import { z } from 'zod';
 
 import { appZodSchema, IAppConfig } from './app-zod.schema';
+import { cryptoZodSchema, ICryptoConfig } from './crypto-zod.schema';
 import { databaseZodSchema, IDatabaseConfig } from './database-zod.schema';
 import { emailZodSchema, IEmailConfig } from './email-zod.schema';
 import { ILoggerConfig, loggerZodSchema } from './logger-zod.schema';
@@ -18,6 +19,7 @@ export const allZodSchema = z.object({
   throttler: throttlerZodSchema,
   redis: redisZodSchema,
   email: emailZodSchema,
+  crypto: cryptoZodSchema,
 });
 
 // 提取配置类型
@@ -30,6 +32,7 @@ export interface AllConfigType {
   throttler: IThrottlerConfig;
   redis: IRedisConfig;
   email: IEmailConfig;
+  crypto: ICryptoConfig;
 }
 export type IAllZodSchema = z.infer<typeof allZodSchema>;
 

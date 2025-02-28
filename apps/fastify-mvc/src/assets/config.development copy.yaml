@@ -70,9 +70,13 @@ email:
   logger: true
 
 crypto:
-  aes:
-    key: '12345678901234567890123456789012' # 32字节密钥
-    iv: '1234567890123456' # 16字节IV
-  rsa:
-    privateKey: 'YOUR_PRIVATE_KEY' # RSA 私钥
-    publicKey: 'YOUR_PUBLIC_KEY' # RSA 公钥
+  aes_key: '12345678901234567890123456789012' # 32字节密钥
+  aes_iv: '1234567890123456' # 16字节IV
+  rsa_private_key: |
+    -----BEGIN PRIVATE KEY-----
+    YOUR_DEFAULT_PRIVATE_KEY
+    -----END PRIVATE KEY-----
+  rsa_public_key: |
+    -----BEGIN PUBLIC KEY-----
+    YOUR_DEFAULT_PUBLIC_KEY
+    -----END PUBLIC KEY-----

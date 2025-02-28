@@ -4,10 +4,16 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/infrastructures/rest"
+    },
+    {
       "path": "../../packages/infrastructures/logger"
     },
     {
       "path": "../../packages/infrastructures/fastify-server"
+    },
+    {
+      "path": "../../packages/infrastructures/crypto"
     },
     {
       "path": "../../packages/infrastructures/config"

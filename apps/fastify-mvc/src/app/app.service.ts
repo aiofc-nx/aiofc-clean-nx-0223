@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): { message: string } {
-    return {
-      message: 'GetHello is a simple example of item returned by your APIs.',
-    };
+  getHello(): string {
+    return 'Hello World!';
   }
 
   getSecureResource(): { message: string } {

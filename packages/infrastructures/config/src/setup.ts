@@ -1,70 +1,23 @@
-import * as fs from 'fs';
-
 import { DynamicModule } from '@nestjs/common';
-import { ConfigModule, registerAs } from '@nestjs/config';
-import * as yaml from 'js-yaml';
+import { ConfigModule } from '@nestjs/config';
 
 import {
-  allZodSchema,
-  IAppConfig,
-  IDatabaseConfig,
-  ILoggerConfig,
-  IRedisConfig,
-  ISwaggerConfig,
-  IThrottlerConfig,
-} from './zod-schema';
+  AppConfig,
+  CryptoConfig,
+  DatabaseConfig,
+  LoggerConfig,
+  RedisConfig,
+  SwaggerConfig,
+  ThrottlerConfig,
+  // validateConfig,
+} from './validate';
 
-// 获取配置文件，并校验配置项
-const validateConfig = (yamlFilePath: string) => {
-  const config = yaml.load(fs.readFileSync(yamlFilePath, 'utf8')) as Record<
-    string,
-    any
-  >;
-  console.log(
-    `已读取文件：${yamlFilePath} \n ${JSON.stringify(config, null, 2)}`
-  );
-  // 校验配置项
-  const parsedConfig = allZodSchema.safeParse(config); // 使用 Zod 进行校验
-  if (!parsedConfig.success) {
-    throw new Error(`配置验证失败: ${JSON.stringify(parsedConfig.error)}`);
-  } else {
-    console.log(`配置验证通过!`);
-  }
-  return parsedConfig;
-};
-
-export const setupConfigModule: (
-  yamlFilePath: string
-) => Promise<DynamicModule> = async (yamlFilePath) => {
-  const parsedConfig = validateConfig(yamlFilePath) as {
-    success: true;
-    data: {
-      app: IAppConfig;
-      logger: ILoggerConfig;
-      swagger: ISwaggerConfig;
-      database: IDatabaseConfig;
-      throttler: IThrottlerConfig;
-      redis: IRedisConfig;
-    };
-  };
-  // 注册应用配置
-  const AppConfig = registerAs('app', () => parsedConfig.data.app);
-  // 注册日志配置
-  const LoggerConfig = registerAs('logger', () => parsedConfig.data.logger);
-  // 注册Swagger配置
-  const SwaggerConfig = registerAs('swagger', () => parsedConfig.data.swagger);
-  // 注册限流配置
-  const ThrottlerConfig = registerAs(
-    'throttler',
-    () => parsedConfig.data.throttler
-  );
-  // 注册数据库配置
-  const DatabaseConfig = registerAs(
-    'database',
-    () => parsedConfig.data.database
-  );
-  // 注册Redis配置
-  const RedisConfig = registerAs('redis', () => parsedConfig.data.redis);
+export const setupConfigModule: () // yamlFilePath: string
+=> Promise<DynamicModule> = async () => {
+  // const validatedConfig = validateConfig();
+  // if (!validatedConfig) {
+  //   throw new Error('配置验证失败');
+  // }
 
   return ConfigModule.forRoot({
     isGlobal: true, // 必须全局导入，因为Logger 和 Database 等模块需要使用 ConfigService
@@ -75,6 +28,9 @@ export const setupConfigModule: (
       DatabaseConfig,
       ThrottlerConfig,
       RedisConfig,
+      CryptoConfig,
     ],
+    // 如果需要，可以将 validatedConfig 传递给其他模块
+    // 或者在这里使用 validatedConfig 进行其他操作
   });
 };

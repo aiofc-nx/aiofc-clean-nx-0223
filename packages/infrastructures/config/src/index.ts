@@ -11,8 +11,19 @@ export {
   IRedisConfig,
   ISwaggerConfig,
   IThrottlerConfig,
+  ICryptoConfig,
   allZodSchema as IAllZodSchema,
 } from './zod-schema';
+
+export {
+  AppConfig,
+  DatabaseConfig,
+  LoggerConfig,
+  RedisConfig,
+  ThrottlerConfig,
+  SwaggerConfig,
+  CryptoConfig,
+} from './validate';
 
 // 重新导出配置服务，方便其他模块直接使用
 export { ConfigService } from '@nestjs/config';
@@ -27,6 +38,7 @@ import {
   IRedisConfig,
   ISwaggerConfig,
   IThrottlerConfig,
+  ICryptoConfig,
 } from './zod-schema';
 
 /**
@@ -115,6 +127,21 @@ export const getRedisConfig = (configService: ConfigService): IRedisConfig => {
   const config = configService.get<IRedisConfig>('redis');
   if (!config) {
     throw new Error('Redis配置未找到');
+  }
+  return config;
+};
+
+/**
+ * 获取加密配置
+ * @param configService ConfigService实例
+ * @returns 加密配置对象
+ */
+export const getCryptoConfig = (
+  configService: ConfigService
+): ICryptoConfig => {
+  const config = configService.get<ICryptoConfig>('crypto');
+  if (!config) {
+    throw new Error('加密配置未找到');
   }
   return config;
 };

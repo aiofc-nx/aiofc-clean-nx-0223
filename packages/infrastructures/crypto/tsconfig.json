@@ -18,6 +18,9 @@
       "path": "../config"
     },
     {
+      "path": "../rest"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

@@ -82,6 +82,7 @@
   "dependencies": {
     "@aiofc/config": "workspace:*",
     "@aiofc/constants": "workspace:*",
+    "@aiofc/crypto": "workspace:*",
     "@aiofc/fastify-server": "workspace:*",
     "@aiofc/logger": "workspace:*",
     "@aiofc/rest": "workspace:*",
@@ -105,7 +106,6 @@
     "@nestjs/cqrs": "^11.0.2",
     "@nestjs/event-emitter": "^3.0.1",
     "@nestjs/jwt": "^11.0.0",
-    "@nestjs/platform-express": "^10.0.2",
     "@nestjs/platform-fastify": "^11.0.10",
     "@nestjs/schedule": "^5.0.1",
     "@nestjs/swagger": "^11.0.4",
