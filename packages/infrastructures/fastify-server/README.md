@@ -1,11 +1,8 @@
 # fastify-server
 
-This library was generated with [Nx](https://nx.dev).
+我们的应用程序底层使用的是fastify
 
-## Building
-
-Run `nx build fastify-server` to build the library.
-
-## Running unit tests
-
-Run `nx test fastify-server` to execute the unit tests via [Jest](https://jestjs.io).
+* 插件注册
+* 钩子注册
+* 跨域处理
+* 限流设置

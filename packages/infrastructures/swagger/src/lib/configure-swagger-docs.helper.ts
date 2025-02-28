@@ -7,7 +7,7 @@ export function configureSwaggerDocs(
   config: ISwaggerConfig
 ) {
   if (config.enable) {
-    const config = new DocumentBuilder()
+    const swaggerConfig = new DocumentBuilder()
       .setTitle('API')
       .setDescription('The API description')
       .setVersion('1.0')
@@ -24,15 +24,16 @@ export function configureSwaggerDocs(
         in: 'Header',
       })
       .build();
-    const documentFactory = () => SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('/docs', app, documentFactory, {
+    const documentFactory = () =>
+      SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup(config.path, app, documentFactory, {
       explorer: true,
       swaggerOptions: {
         filter: true,
         showRequestDuration: true,
       },
-      jsonDocumentUrl: '/docs/json',
-      yamlDocumentUrl: '/docs/yaml',
+      jsonDocumentUrl: `${config.path}/json`,
+      yamlDocumentUrl: `${config.path}/yaml`,
     });
   }
 }

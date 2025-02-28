@@ -1,14 +1,14 @@
 import {
   ConfigKeyPaths,
-  IAppConfig,
-  ICorsConfig,
-  ISwaggerConfig,
+  ConfigService,
+  getAppConfig,
+  getSwaggerConfig,
 } from '@aiofc/config';
 import { Logger } from '@aiofc/logger';
+import { RedisUtility } from '@aiofc/redis';
 import { configureAuthSwaggerDocs, configureSwaggerDocs } from '@aiofc/swagger';
 import { generateRandomId } from '@aiofc/utils';
 import { RequestMethod, ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -33,6 +33,7 @@ function buildFastifyAdapter(): FastifyAdapter {
 }
 
 export async function bootstrap(module: any) {
+  await RedisUtility.client();
   // 创建应用
   const fastifyAdapter = buildFastifyAdapter();
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -48,15 +49,14 @@ export async function bootstrap(module: any) {
 
   // 获取配置
   const configService = app.get(ConfigService<ConfigKeyPaths>);
-  const appConfig = configService.get<IAppConfig>('app');
-  const corsConfig = configService.get<ICorsConfig>('cors');
-  const swaggerConfig = configService.get<ISwaggerConfig>('swagger');
+  const appConfig = getAppConfig(configService);
+  const swaggerConfig = getSwaggerConfig(configService);
   process.env['NODE_ENV'] = appConfig?.NODE_ENV; // 设置环境变量,后面会用到一定要设置
 
   //  Fastify 设置
   fastifyAddHook(app);
-  if (corsConfig) {
-    fastifyRegisterPlugins(app, corsConfig);
+  if (appConfig) {
+    fastifyRegisterPlugins(app, appConfig);
   }
   // 使用PinoLogger
   const pino = app.get(Logger);
@@ -73,7 +73,7 @@ export async function bootstrap(module: any) {
     configureSwaggerDocs(app, swaggerConfig);
   }
   // 设置全局前缀
-  app.setGlobalPrefix('api', {
+  app.setGlobalPrefix(appConfig.globalPrefix, {
     exclude: [{ path: 'health', method: RequestMethod.GET }],
   });
   app.useGlobalPipes(
@@ -87,14 +87,19 @@ export async function bootstrap(module: any) {
     })
   );
   // 启动应用
-  const port = appConfig?.port || 3000;
-  await app.listen(port, '0.0.0.0');
+  const port = appConfig.port || 3000;
+  await app.listen(port, '0.0.0.0', async () => {
+    pino.log(`Server is running on ${await app.getUrl()}`, 'Server'); // 修正了多余的括号
+  });
   if (process.env['NODE_ENV'] !== 'production') {
     pino.debug(
       `${await app.getUrl()} - Environment: ${process.env['NODE_ENV']}`,
       'Environment'
     );
 
-    pino.debug(`Url for OpenApi: ${await app.getUrl()}/docs`, 'Swagger');
+    pino.debug(
+      `Url for OpenApi: ${await app.getUrl()}/${swaggerConfig.path}`,
+      'Swagger'
+    );
   }
 }

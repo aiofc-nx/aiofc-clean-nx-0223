@@ -3,14 +3,14 @@ import { INestApplication } from '@nestjs/common';
 
 export function configureAuthSwaggerDocs(
   app: INestApplication,
-  swaggerConfig: ISwaggerConfig
+  config: ISwaggerConfig
 ) {
   const apiDocumentationCredentials = {
-    user: swaggerConfig.user,
-    password: swaggerConfig.password,
+    user: config.user,
+    password: config.password,
   };
   const httpAdapter = app.getHttpAdapter();
-  httpAdapter.use('/docs', (req: any, res: any, next: () => void) => {
+  httpAdapter.use(config.path, (req: any, res: any, next: () => void) => {
     function parseAuthHeader(input: string): {
       user: string;
       password: string;

@@ -24,10 +24,12 @@
     "paths": {
       "@aiofc/config": ["packages/infrastructures/config/src/index.ts"],
       "@aiofc/constants": ["packages/infrastructures/constants/src/index.ts"],
+      "@aiofc/crypto": ["packages/infrastructures/crypto/src/index.ts"],
       "@aiofc/fastify-server": [
         "packages/infrastructures/fastify-server/src/index.ts"
       ],
       "@aiofc/logger": ["packages/infrastructures/logger/src/index.ts"],
+      "@aiofc/redis": ["packages/infrastructures/redis/src/index.ts"],
       "@aiofc/rest": ["packages/infrastructures/rest/src/index.ts"],
       "@aiofc/swagger": ["packages/infrastructures/swagger/src/index.ts"],
       "@aiofc/typings": ["packages/infrastructures/typings/src/index.ts"],

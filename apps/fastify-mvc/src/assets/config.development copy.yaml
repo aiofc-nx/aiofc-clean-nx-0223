@@ -1,0 +1,82 @@
+app:
+  port: 3000
+  globalPrefix: 'api'
+  NODE_ENV: development
+  cors:
+    enabled: true
+    origin:
+      - 'http://localhost:3000'
+      - 'http://localhost:3001'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+    preflight_continue: false
+    options_success_status: 204
+    credentials: true
+    max_age: 3600
+
+logger:
+  colorize: true
+  defaultLevel: info
+  prettyLogs: true
+
+throttler:
+  enabled: true
+  ttl: 60000
+  limit: 10
+  errorMessage: 'Too many requests, please try again later.'
+
+swagger:
+  enable: true
+  path: 'doc'
+  user: 'admin'
+  password: '123456'
+
+database:
+  user: postgres
+  password: postgres
+  host: localhost
+  port: 5438
+  name: aiofc_db
+
+redis:
+  mode: standalone # 可选值: 'standalone', 'cluster', 'sentinel'
+  standalone:
+    host: localhost
+    port: 26379
+    password: '123456'
+    db: 5
+  cluster:
+    - host: '127.0.0.1'
+      port: 7000
+      password: ''
+    - host: '127.0.0.1'
+      port: 7001
+  sentinel:
+    sentinels:
+      - host: '127.0.0.1'
+        port: 26379
+      - host: '127.0.0.1'
+        port: 26380
+    name: master
+    password: ''
+    db: 5
+
+email:
+  host: 'smtp.mailtrap.io'
+  port: 2525
+  auth:
+    user: 'admin'
+    password: '123456'
+  debug: true
+  logger: true
+
+crypto:
+  aes_key: '12345678901234567890123456789012' # 32字节密钥
+  aes_iv: '1234567890123456' # 16字节IV
+  rsa_private_key: |
+    -----BEGIN PRIVATE KEY-----
+    YOUR_DEFAULT_PRIVATE_KEY
+    -----END PRIVATE KEY-----
+  rsa_public_key: |
+    -----BEGIN PUBLIC KEY-----
+    YOUR_DEFAULT_PUBLIC_KEY
+    -----END PUBLIC KEY-----

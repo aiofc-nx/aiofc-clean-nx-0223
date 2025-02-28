@@ -1,0 +1,34 @@
+{
+  "name": "redis",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/infrastructures/redis/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
+      }
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/infrastructures/redis",
+        "tsConfig": "packages/infrastructures/redis/tsconfig.lib.json",
+        "packageJson": "packages/infrastructures/redis/package.json",
+        "main": "packages/infrastructures/redis/src/index.ts",
+        "assets": ["packages/infrastructures/redis/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
